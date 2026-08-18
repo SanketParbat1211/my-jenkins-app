@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'GitHub वरून कोड पुल केला जात आहे...'
-                git branch: 'main', url: 'https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git'
+                git branch: 'main', url: 'https://github.com/SanketParbat1211/my-jenkins-app.git'
             }
         }
         stage('Install Dependencies') {
