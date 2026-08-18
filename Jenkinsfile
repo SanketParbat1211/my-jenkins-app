@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'GitHub वरून कोड पुल केला जात आहे...'
-                git branch: 'main', url: 'https://github.com/SanketParbat1211/my-jenkins-app.git'
+                checkout scm
             }
         }
         stage('Install Dependencies') {
@@ -17,8 +17,8 @@ pipeline {
         stage('Run App') {
             steps {
                 echo 'वेब ॲप्लिकेशन सुरू करत आहे...'
-                // बॅकग्राउंडला चालवण्यासाठी nohup वापरला आहे
-                sh 'nohup npm start &'
+                // JENKINS_NODE_COOKIE=dontKillMe वापरल्याने process background ला नक्की चालू राहील
+                sh 'JENKINS_NODE_COOKIE=dontKillMe nohup npm start > app.log 2>&1 &'
             }
         }
     }
